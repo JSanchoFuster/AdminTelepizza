@@ -160,4 +160,21 @@ public class Conexion {
         }
         return borrado;
     }
+     
+     public String verPizzas(){
+         String aux = "";
+          try {           
+            conectar();
+            st = con.createStatement();
+            rs = st.executeQuery("Select nombre from pizza;");
+            while (rs.next()){
+               aux+=rs.getString(1);
+               aux+="\n";
+            }
+            desconectar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return aux;
+     }
 }
